@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" href="glightbox.css" />
+<script src="wheelzoom.js"></script>
+<script src="glightbox.js"></script>
+</head>
+<body>
+    <div class="content">
+        <p>Some text before image</p>
+        <a href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Schlosspark-K%C3%B6ln-Stammheim-Kunst-und-Natur.JPG" class="glightbox">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Schlosspark-K%C3%B6ln-Stammheim-Kunst-und-Natur.JPG" width="600">
+        </a>
+        <p>Another image</p>
+        <a href="https://raw.githubusercontent.com/rekalantar/covid19_detector/master/covid_vs_healthy_training.png" class="glightbox">
+            <img src="https://raw.githubusercontent.com/rekalantar/covid19_detector/master/covid_vs_healthy_training.png" width="600">
+        </a>
+        <p>Some text after image</p>
+    </div>
+    <p>Image not zoomable outside of above area</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Schlosspark-K%C3%B6ln-Stammheim-Kunst-und-Natur.JPG" width="200">
+</body>
+<script type="text/javascript">
+    const lightbox = GLightbox({
+        selector: 'div.content img',
+        touchNavigation: true,
+        openEffect: 'fade',
+        closeEffect: 'fade',
+        width: '900px',
+        closeOnOutsideClick: false,
+        zoomable: false,
+        draggable: false,
+    });
+    lightbox.on('slide_after_load', (slide) => {
+        if (!slide.wheelzoom) {
+            slide.wheelzoom = true;
+            wheelzoom(slide.slide.querySelectorAll('img'));
+        }
+    });
+</script>
+</html>
